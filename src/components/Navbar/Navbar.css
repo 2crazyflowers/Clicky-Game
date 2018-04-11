@@ -1,8 +1,25 @@
-.navbar {
+.Navbar {
   width: 100%;
   text-align: center;
   font-size: 3rem;
-  /* text-decoration: underline; */
   color: #2A77AE;
   margin-bottom: 50px;
+} 
+
+
+.Nav-header {
+  background-color: #222;
+  height: 200px;
+  padding: 20px;
+  color: white;
+  font-weight: bold;
+}
+
+.Nav-title {
+  /* font-size: 1.5em; */
+  font-weight: bold;
+}
+
+.Nav-intro {
+  font-size: large;
 }
