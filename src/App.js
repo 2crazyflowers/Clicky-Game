@@ -28,19 +28,25 @@ class App extends Component {
 //the console.log of state does not seem to happen at the same time that the html is rerendered
 
   updateClicked = id => {
-    console.log(friends);
-    console.log(`the one you clicked on has a value of ${friends[0].clicked} before we change things`)
     
-    if (friends[0].clicked === false) {
+    //must call this const first or else the if/else statements doesn't know which 
+    //friend to check the true/false value of. I could click on multiple items without closing game
+    //as I accidentally placed it in the first if statement
+    const clickedFriend = this.state.friends.filter(friend => friend.id === id);
+
+    console.log(`the one you clicked on has a value of ${clickedFriend[0].clicked} before we change things`);
+
+
+    if (clickedFriend[0].clicked === false) {
       //console.log(this.state.score);
       this.setState({ score: this.state.score + 1 });
-      const friends = this.state.friends.filter(friend => friend.id === id);
+      
       //let player know it is the first time that they have clicked this character
-      console.log(`this is the first time you have clicked ${friends[0].name} good job!`);
+      console.log(`this is the first time you have clicked ${clickedFriend[0].name} good job!`);
 
       //and change clicked to true 
-      friends[0].clicked = true;
-      //console.log(`${friends[0].name}'s value has been updated to: ${friends[0].clicked} using friends[0].clicked = "true"`);
+      clickedFriend[0].clicked = true;
+      //console.log(`${clickedFriend[0].name}'s value has been updated to: ${clickedFriend[0].clicked} using clickedFriend[0].clicked = "true"`);
       console.log(friends);
 
       //updating current score
@@ -53,47 +59,96 @@ class App extends Component {
         alert(`You've won! Your memory is perfect, try again`);
 
         //to reset game go through all friends and update their clicked value to false
-        const friends = this.state.friends.map(friend => friend.clicked === false);
+        const friends = this.state.friends.map(friend => friend.clicked = false);
         console.log(friends);
         //check to see if current score is higher than their highest score, 
         //if it is update high score to new value
-      
-        if (score > highScore) {
-          this.state.highScore({ highScore: score});
+        
+        // for (let i = 0; i < friends.length; i++) {
+        //   friends[i].clicked = false;
+        //   console.log(`${friends[i].name}, clicked value of: ${friends[i].clicked}`);
+        //   console.log([i]);
+        // }
+        console.log(friends);
+        console.log(this.state.score);
+        console.log(this.state.highScore);
+        
+        if (this.state.score > this.state.highScore) {
+          this.setState({ highScore: this.state.count });
+
           console.log(`Your new high score is: ${highScore}`);
           //set score back to 0 to restart game
           this.setState({ score: 0 });
         }
+        else {
+          this.setState({ score: 0 });
+        }
       }
     }
-    else if (friends[0].clicked === true) {
+    else if (clickedFriend[0].clicked === true) {
       //end game 
-      //   //reset states of current score to 0
-      //   //if currentScore is higher than highScore then update state to equal currentScore
-      //   //update clicked of all to false using filter
-      alert(`You already clicked ${friends[0].name}'s image before. I know you like this character, but this means you loose. Try again.`);
-      //console.log('this click is true, you loose');
-      
+      //reset states of current score to 0
+      //if currentScore is higher than highScore then update state to equal currentScore
+      //update clicked of all to false using filter
+      console.log(this.state.score);
+      console.log(this.state.highScore);
+
+      if (this.state.score > this.state.highScore) {
+        let highScore = this.state.score;
+        this.setState({ highScore: highScore });
+
+        console.log(`Your new high score is: ${highScore}`);
+        //set score back to 0 to restart game
+        this.setState({ score: 0 });
+      }
+      else {
+        this.setState({ score: 0 });
+      }
+
+      const friends = this.state.friends.map(friend => friend.clicked = false);
+
+      alert(`You already clicked ${friends[0].name} image before. I know you like this character, but this means you loose. Try again.`);
+      console.log('this click is true, you loose');
       this.setState({ score: 0 });
+
+      // for (let i = 0; i < friends.length; i++) {
+      //   friends[i].clicked = false;
+      //   console.log(`${friends[i].name}, clicked value of: ${friends[i].clicked}`);
+      //   console.log([i]);
+      // }
+      console.log(friends);
     }       
     console.log(friends); 
-    
-  };
-  //add randomizer after you verify that click change/check for true/false of click is working correctly
-  //randomizer for image placement
-  //var num = Math.floor(Math.random() * 12);
-  //need to loop through all and have a number between 0-11 to place each image randomly
-  //cannot have same numbers so create an array to verify that number/placement hasn't already been chosen
 
-  // Map over this.state.friends and render a FriendCard component for each friend object
-  //do not close the navbar like so: <Navbar></Navbar> or the score does not render properly, 
-  //you must keep the tag open until your scores are done, then you can close with />
+  };
+
+  // randomizer = id => {
+  // //add randomizer after you verify that click change/check for true/false of click is working correctly
+  // //randomizer for image placement
+  // var num = Math.floor(Math.random() * 12);
+  // //need to loop through all and have a number between 0-11 to place each image randomly
+  // //cannot have same numbers so create an array to verify that number/placement hasn't already been chosen
+
+  // // Map over this.state.friends and render a FriendCard component for each friend object
+  // //do not close the navbar like so: <Navbar></Navbar> or the score does not render properly, 
+  // //you must keep the tag open until your scores are done, then you can close with />
+  // }
+  //numArray = [0,1,2,3,4,5,6,7,8,9,10,11];
+    //var num = Math.floor(Math.random() * 12);
+    // var p = friends.length;
+    // var preBuffer = new Array()
+    // for (i = 0; i < p; i++) {
+    //   preBuffer[i] = new Image()
+    //   preBuffer[i].src = theImages[i]
+    // }
+
   render() {
     return (
       <Wrapper>
         <Navbar
           score={this.state.score}
-        /> ,
+          highScore={this.state.highScore}
+        />
       
         {this.state.friends.map(friend => (
           <FriendCard
