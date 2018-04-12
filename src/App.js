@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import FriendCard from "./components/FriendCard";
 import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar";
-import Title from "./components/Title";
+// import Title from "./components/Title";
 import friends from "./friends.json";
 import "./App.css";
 
 //define variables
-let currentScore = 0;
+let score = 0;
 let highScore = 0;
 
 
@@ -15,7 +15,7 @@ class App extends Component {
   // Setting this.state.friends to the friends json array
   state = {
     friends,
-    currentScore,
+    score,
     highScore
   };
 
@@ -29,12 +29,19 @@ class App extends Component {
 
 
   updateClicked = (id, clicked) => {
+
     // console.log(`this is friends[0]: ${friends[id]}`);
     // console.log(`this is friends[0].name: ${friends[0].name}`);
     // console.log(`i know this before calling const: clicked value: ${friends[0].clicked}`);
     // console.log(`this image with id ${id}, was clicked - i know the id before calling const`);
     //have to figure out how to assess clicked
     if (friends[0].clicked === false) {
+      //then increase score 
+      //and change clicked to true 
+      //give clicked a new class so you can filter through to reupdate clicked back to false when game is done
+      
+      this.setState({ score: this.state.score + 1 });
+      console.log(this.state.score);
       const friends = this.state.friends.filter(friend => friend.id === id);
       // console.log(`this is friends[0]: ${friends[id]}`);
       // console.log(`this is friends[0].name: ${friends[0].name}`);
@@ -49,32 +56,22 @@ class App extends Component {
       friends[0].clicked = "true";
       console.log(`${friends[0].name}'s value has been updated to: ${friends[0].clicked} using friends[0].clicked = "true"`);
       console.log(friends);
-      this.setState({ currentScore: this.state.currentscore + 1 });
+
+      //updating current score
+      // console.log(`current score before changing state is: ${score}`);
+      // console.log(`current score is: ${score}`);
+      //this console.log shows the true score
+      console.log(this.state.score);
+
+
     }
-    if ((friends[0].clicked === true)) {
-      console.log('this click is true, you loose');
-      console.log(friends);
-    }
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    // const friends = this.state.friends.filter(friend => friend.clicked = true);
-    // // Set this.state.friends equal to the new friends array
-    // this.setState({ friends }, { currentScore: this.state.currentscore + 1 });
-    
-    // if ("clicked" = false) {
-    //   console.log('this click is false')
-      //then increase score 
-      //and change clicked to true 
-      //give clicked a new class so you can filter through to reupdate clicked back to false when game is done
-      //
-    // }
-    // else {
-    //   console.log('this click is true')
-    //   //end game 
+    if ((friends[0].clicked === true)) {//end game 
     //   //reset states of current score to 0
     //   //if currentScore is higher than highScore then update state to equal currentScore
     //   //update clicked of all to false using filter
-    // }
-    
+      console.log('this click is true, you loose');
+      console.log(friends);
+    }    
   };
 
   //randomizer for image placement
@@ -86,9 +83,8 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-      <Title>Clicky Game</Title> ,
       <Navbar>
-        currentScore={this.state.currentScore}
+        score={this.state.score}
       </Navbar> ,
       
         {this.state.friends.map(friend => (

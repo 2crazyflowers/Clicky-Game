@@ -1,3 +1,199 @@
+# Clicky-Game
+
+This is memory game that is built with React. It breaks up the application's UI into components, manage component state, and respond to user events.
+
+![Image of App in Browser](./public/assets/images/readme_images/startpage.PNG)
+	
+Your memory becomes a factor as you only want to click on the ones that you haven't clicked on yet. Your current score increases each time you click on a new character. The highest score you can get is 12. If you click on something you already clicked on you will loose and that resets the game. Your highest score is kept.
+
+## Getting Started
+
+This app is deployed at [https://spicyburnz.herokuapp.com/index](https://spicyburnz.herokuapp.com/index). Or you can get the app set up on your own local computer.
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### NPM Packages or other programs needed
+
+This app requires two programs to be installed on your computer:
+* [Node.js](https://nodejs.org/en/)
+
+
+It also requires a number of NPM Packages: 
+  * [Express](https://www.npmjs.com/package/express)
+  * [Express-Handlers](https://www.npmjs.com/package/express-handlebars)
+  * [Body-Parser](https://www.npmjs.com/package/body-parser)
+  * [MySQL](https://www.npmjs.com/package/mysql)
+  * [MySQL2](https://www.npmjs.com/package/mysql2)
+  * [dotenv](https://www.npmjs.com/package/dotenv)
+  * [fs](https://www.npmjs.com/package/fs)
+  * [nightmare](https://www.npmjs.com/package/nightmare)
+  * [npm](https://www.npmjs.com/package/npm)
+  * [path](https://www.npmjs.com/package/path)
+  * [sequelize](https://www.npmjs.com/package/sequelize)
+  * [sequelize-cli](https://www.npmjs.com/package/sequelize-cli)
+
+
+#### Directory structure
+
+All the recommended files and folders from the steps above should look like the following structure, which was created that meets MVC Paradigm:
+
+```
+Clicky-Game
+│
+├── node_modules
+│
+├── public
+│   └── assets
+│       └── imgages
+│          ├── 
+│          └── readme_images 
+├── src
+│   └── components
+│          ├── FriendCard
+│          │   ├── FriendCard.css
+│          │   ├── FriendCard.js
+│          │   └── index.js
+│          ├── Navbar
+│          │    ├── Navbar.css
+│          │    ├── Navbar.js
+│          │    └── index.js
+│          └── Wrapper
+│              ├── Wrapper.css
+│              ├── Wrapper.js
+│              └── index.js
+├── App.css
+│
+├── App.js
+│
+├── App.test.js
+│
+├── friends.json
+│
+├── index.css
+│ 
+├── index.js
+│
+├── registerServiceWorker.js
+│
+├── .gitignore
+│ 
+├── package.json
+│ 
+├── README.md
+│
+├── yarn-error.log
+│
+└── yarn.lock
+
+```
+
+
+## Instructions on setting up and running this app on your computer
+
+#### App Setup
+
+1. Fork a copy to your Github repo and clone it to your computer.
+
+1. Go to your Git Bash and got to into the folder called project_two.
+
+1. To get all the npm packages required to run this app type into the command line `npm install`
+
+
+#### Database Setup
+
+1. On your computer, open MySQL Workbench and login to a local server you have set up. 
+
+1. Open a new MySQL tab for executing queries. Create a database by adding the following code:
+
+```
+  CREATE DATABASE joke_db;
+  USE joke_db;
+```
+
+1. Then go back to your chosen text editor (we suggest either `Visual Studio Code` or `Sublime Text`) and open your `project_two` folder.
+
+1. Open the `config` folder and go to the config.json file. You will see at the top of the file this code:
+```
+{
+  "development": {
+    "username": "root",
+    "password": "",
+    "database": "joke_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+
+```  
+1. If you use a password for your MySQL, enter it between the quotes so it looks like this: `"password": "your password here"` and save the file.
+
+
+#### Open App in Browser
+
+1. In the command line go into main folder of `Clicky-Game`
+
+1. Type `yarn start` end hit enter
+
+![Image of Command Line](./public/assets/images/commandline.PNG)
+
+1. Go to your browser and open a new tab and type `localhost:3000` then hit enter. This is what you should see:
+
+![Image of App in Browser](./public/assets/images/startpage.PNG)
+
+
+#### Using the App
+
+
+**Clicking Add Your Own Button**
+
+* When you click on the `Add Your Own` button a modal will open titled `Make Us Laugh`, here I have added a joke:
+
+	![Image of Adding a Joke](./public/assets/images/addajoke.PNG)
+
+
+* Here is the database before added a joke, please note that the joke has not been added yet:
+	![Image of MySQL Before Adding a Joke](./public/assets/images/mysqlbeforeadd.PNG)
+
+
+* Here is the database after added a joke, you can see the joke I added is now at the bottom of the rows:
+	![Image of MySQL after Adding a Joke](./public/assets/images/mysqlafteradd.PNG)
+
+
+**Clicking Show Jokes Button**
+
+* One of the important feature of this app is that you cannot see how others have rated the joke until you do, this keeps you honest as how you rate the joke is not influence by the ratings of others. The other is that you cannot click either of the buttons after the ratings have been shown.
+
+* Here is the page before I rated the jokes to be either Spicy or Icy:
+	
+	![Page Before Judging Joke to be Spicy or Icy](./public/assets/images/judgejokesbefore.PNG)
+
+* Here is the page after I rated the jokes to be Spicy or Icy:
+
+	![Page After Judging Joke to be Spicy or Icy](./public/assets/images/judgejokesafter.PNG)
+
+* To show you how the database has changed, here is the database before rating the jokes. Note the Spicy and Icy values of the top three jokes:
+
+	![MySQL Before Rating Jokes](./public/assets/images/mysqlbeforejudge.PNG)
+
+* Here is the database after rating the jokes. Note either the Spicy or Icy values of each joke have change:
+
+	![MySQL After Rating Jokes](./public/assets/images/mysqlafterjudge.PNG) 
+
+
+## Deployment
+
+This application is delployed at [https://spicyburnz.herokuapp.com/index](https://spicyburnz.herokuapp.com/index)
+
+
+## Author
+
+* [Sara Bracewell](https://github.com/2crazyflowers)
+
+
+## Issues or Future wants for the App
+
+
+
+
 # Clicky Game
 
 ## Overview
