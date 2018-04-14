@@ -2,13 +2,13 @@
 
 This is memory game that is built with React. It breaks up the application's UI into components, manage component state, and respond to user events.
 
-![Image of App in Browser](./public/assets/images/readme_images/startpage.PNG)
+![Image of App in Browser](./public/assets/images/readme_images/begingame.PNG)
 	
 Your memory becomes a factor as you only want to click on the ones that you haven't clicked on yet. Your current score increases each time you click on a new character. The highest score you can get is 12. If you click on something you already clicked on you will loose and that resets the game. Your highest score is kept.
 
 ## Getting Started
 
-This app is deployed at [https://spicyburnz.herokuapp.com/index](https://spicyburnz.herokuapp.com/index). Or you can get the app set up on your own local computer.
+This app is deployed at [https://2crazyflowers.github.io/Clicky-Game/](https://2crazyflowers.github.io/Clicky-Game/). Or you can get the app set up on your own local computer.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -18,19 +18,9 @@ This app requires two programs to be installed on your computer:
 * [Node.js](https://nodejs.org/en/)
 
 
-It also requires a number of NPM Packages: 
-  * [Express](https://www.npmjs.com/package/express)
-  * [Express-Handlers](https://www.npmjs.com/package/express-handlebars)
-  * [Body-Parser](https://www.npmjs.com/package/body-parser)
-  * [MySQL](https://www.npmjs.com/package/mysql)
-  * [MySQL2](https://www.npmjs.com/package/mysql2)
-  * [dotenv](https://www.npmjs.com/package/dotenv)
-  * [fs](https://www.npmjs.com/package/fs)
-  * [nightmare](https://www.npmjs.com/package/nightmare)
-  * [npm](https://www.npmjs.com/package/npm)
-  * [path](https://www.npmjs.com/package/path)
-  * [sequelize](https://www.npmjs.com/package/sequelize)
-  * [sequelize-cli](https://www.npmjs.com/package/sequelize-cli)
+React will need to be set up in this folder. React is a JavaScript library for building user interfaces:
+  * [React](https://reactjs.org/)
+  * There is more information about React on their [GitHub Repository](https://github.com/facebook/react/)
 
 
 #### Directory structure
@@ -87,96 +77,63 @@ Clicky-Game
 
 ```
 
-
 ## Instructions on setting up and running this app on your computer
 
 #### App Setup
 
 1. Fork a copy to your Github repo and clone it to your computer.
 
-1. Go to your Git Bash and got to into the folder called project_two.
+1. Go to your Git Bash and got to into the folder called `ClickyGame`.
 
-1. To get all the npm packages required to run this app type into the command line `npm install`
-
-
-#### Database Setup
-
-1. On your computer, open MySQL Workbench and login to a local server you have set up. 
-
-1. Open a new MySQL tab for executing queries. Create a database by adding the following code:
-
-```
-  CREATE DATABASE joke_db;
-  USE joke_db;
-```
-
-1. Then go back to your chosen text editor (we suggest either `Visual Studio Code` or `Sublime Text`) and open your `project_two` folder.
-
-1. Open the `config` folder and go to the config.json file. You will see at the top of the file this code:
-```
-{
-  "development": {
-    "username": "root",
-    "password": "",
-    "database": "joke_db",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
-
-```  
-1. If you use a password for your MySQL, enter it between the quotes so it looks like this: `"password": "your password here"` and save the file.
+1. To get the packages required to run this app type into the command line `yarn install`
 
 
-#### Open App in Browser
+#### The Character Information
 
-1. In the command line go into main folder of `Clicky-Game`
+1. You can find the friend or character information in the `package.json` file. In this file each friend is given an list of attributes and values including id number, name, image link and click value. 
+
+1. The click value is set for false on each friend until the friend image is clicked on by the user. Once that happens the click value is changed to true and if clicked again it will reset the game.
+
+1. Since this is the file used to contain the friend information there is no use of a database to set up.
+
+
+### Open in Your Code Editor
+1. Open the `ClickyGame` folder in your text editor of choice (I suggest either `Visual Studio Code` or `Sublime Text`).
+
+1. Then open your terminal (I use `GitBash`) and go to the main folder of `Clicky-Game`
 
 1. Type `yarn start` end hit enter
 
-![Image of Command Line](./public/assets/images/commandline.PNG)
+![Image of Command Line](./public/assets/images/readme_images/commandline.PNG)
 
-1. Go to your browser and open a new tab and type `localhost:3000` then hit enter. This is what you should see:
+1. This is what you should see in your terminal after you hit enter so you know it is working correctly:
 
-![Image of App in Browser](./public/assets/images/startpage.PNG)
+![Image of App in Browser](./public/assets/images/readme_images/yarnstart.PNG)
 
-
-#### Using the App
-
-
-**Clicking Add Your Own Button**
-
-* When you click on the `Add Your Own` button a modal will open titled `Make Us Laugh`, here I have added a joke:
-
-	![Image of Adding a Joke](./public/assets/images/addajoke.PNG)
+1. React will automatically start the app in your browser at `http://localhost:3000/` unless you already have something else running on that port in which case it will go to 3001.
 
 
-* Here is the database before added a joke, please note that the joke has not been added yet:
-	![Image of MySQL Before Adding a Joke](./public/assets/images/mysqlbeforeadd.PNG)
+#### Game Features
+
+* When you hover over an image the image will appear to jump that is a CSS trick that I thought added some interest to the game:
+
+	![Image of Hover Feature](./public/assets/images/readme_images/hoverfeature.PNG)
 
 
-* Here is the database after added a joke, you can see the joke I added is now at the bottom of the rows:
-	![Image of MySQL after Adding a Joke](./public/assets/images/mysqlafteradd.PNG)
+* On every click of an image there is a notice to the user to let them know the name of the character they clicked on and whether they have clicked on it before. This click will also check to see if the character clicked on has a false or true value. Here is the console before Bugs Bunny is clicked, note that the clicked value is false:
+	![Image before click in console](./public/assets/images/readme_images/logbeforeclick.PNG)
+
+* You can see after Bugs Bunny is clicked that the clicked value becomes true:
+  ![Image after click in console](./public/assets/images/readme_images/logafterclick.PNG)
+
+* Here is the message that you recieve after Bugs Bunny is clicked if it had not been clicked before:
+	![Image of browser after clicked once](./public/assets/images/readme_images/browserfirstclick.PNG)
+
+* Here is the message that you receive after Bugs Bunny is clicked a second time: 
+	![Image of browser after clicked once](./public/assets/images/readme_images/browserafterclick.PNG)
 
 
-**Clicking Show Jokes Button**
-
-* One of the important feature of this app is that you cannot see how others have rated the joke until you do, this keeps you honest as how you rate the joke is not influence by the ratings of others. The other is that you cannot click either of the buttons after the ratings have been shown.
-
-* Here is the page before I rated the jokes to be either Spicy or Icy:
-	
-	![Page Before Judging Joke to be Spicy or Icy](./public/assets/images/judgejokesbefore.PNG)
-
-* Here is the page after I rated the jokes to be Spicy or Icy:
-
-	![Page After Judging Joke to be Spicy or Icy](./public/assets/images/judgejokesafter.PNG)
-
-* To show you how the database has changed, here is the database before rating the jokes. Note the Spicy and Icy values of the top three jokes:
-
-	![MySQL Before Rating Jokes](./public/assets/images/mysqlbeforejudge.PNG)
-
-* Here is the database after rating the jokes. Note either the Spicy or Icy values of each joke have change:
-
-	![MySQL After Rating Jokes](./public/assets/images/mysqlafterjudge.PNG) 
+* The final feature of this app is that all the images will change their location randomly each time an image is clicked.
 
 
 ## Deployment
@@ -193,64 +150,6 @@ This application is delployed at [https://spicyburnz.herokuapp.com/index](https:
 
 
 
-
-# Clicky Game
-
-## Overview
-
-For this assignment, you'll create a memory game with React. This assignment will require you to break up your application's UI into components, manage component state, and respond to user events.
-
-### Instructions
-
-1. Check out the [example solution](https://clicky-game.netlify.com/) and study the app's basic functionality.
-
-2. Create a new React application using [Create React App](https://github.com/facebookincubator/create-react-app).
-
-3. The application should render different images (of your choice) to the screen. Each image should listen for click events.
-
-4. The application should keep track of the user's score. The user's score should be incremented when clicking an image for the first time. The user's score should be reset to 0 if they click the same image more than once.
-
-5. Every time an image is clicked, the images rendered to the page should shuffle themselves in a random order.
-
-6. Once the user's score is reset after an incorrect guess, the game should restart.
-
-7. When complete, the application should be deployed to Github Pages. See the README generated with Create React App for instructions on deploying the application to Github Pages.
-
-- - -
-
-#### Minimum Requirements
-
-Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Hosting on Heroku and adding a README.md are required for this homework. In addition, add this homework to your portfolio, more information can be found below.
-
-- - -
-
-#### Hints
-
-* Begin by building a non-functioning static version for your Clicky Game. Then work on making the game interactive.
-
-- - -
-
-### Create a README.md
-
-Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
-
-* [About READMEs](https://help.github.com/articles/about-readmes/)
-
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-
-- - -
-
-### Add To Your Portfolio
-
-After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
-
-- - -
-
-#### One More Thing
-
-If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
-
-**Good Luck!**
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

@@ -7,10 +7,10 @@ const Navbar = props => (
   <div className="Navbar">
     <header className="Nav-header">
       <h1 className="Nav-title">Welcome to ClickyGame</h1>
-      <h4>See if you can win and figure out how the game works!</h4>
-      <h5><em>Current Score: {props.score}</em></h5>
+      <h6>To play the game only click on the character once.</h6>
+      <h5 className="Nav-score"><strong>Current Score: {props.score}</strong></h5>
       <h6>Your High Score: {props.highScore}</h6>
-      
+      <h5 className="Nav-info">{props.userInfo}</h5>
     </header>
   </div>
 );
