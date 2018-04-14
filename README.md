@@ -143,14 +143,16 @@ This application is delployed at [https://spicyburnz.herokuapp.com/index](https:
 
 ## Author
 
-* [Sara Bracewell](https://github.com/2crazyflowers)
+[Sara Bracewell](https://github.com/2crazyflowers)
 
 
 ## Issues or Future wants for the App
 
+I would like to change the app to something other than cartoon charaters but I wanted to work mainly on learning React and making the functionality work the way I wanted it to.
 
 
 
+## React Readme
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
