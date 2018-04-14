@@ -104,6 +104,8 @@ Clicky-Game
 
 1. Type `yarn start` end hit enter
 
+1. When you are ready to stop the app, in the command line hit `control C`
+
 ![Image of Command Line](./public/assets/images/readme_images/commandline.PNG)
 
 1. This is what you should see in your terminal after you hit enter so you know it is working correctly:
